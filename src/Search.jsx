@@ -1,5 +1,4 @@
 import React from 'react'
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Search = ({onSearch}) => {
   async function handleSearch(event) {
@@ -9,15 +8,12 @@ const Search = ({onSearch}) => {
     onSearch(query);
   }
 
-
-
   return (
     <div className='Search'>
-        <form class="d-flex" onSubmit={handleSearch}>
-            <input class="form-control me-2" type="search" name="search" placeholder="Enter Pokemon Name or ID" aria-label="Search"/>
-            <button class="btn btn-outline-primary" type="submit" >Search</button>
+        <form onSubmit={handleSearch}>
+            <input type="search" name="search" placeholder="Enter Pokemon Name or ID" aria-label="Search"/>
+            <button type="submit">Search</button>
         </form>
-
     </div>
   )
 }

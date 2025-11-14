@@ -6,82 +6,308 @@
 }
 
 html, body, #root {
-  height: 100%;
-  width: 100%;
-  background: linear-gradient(135deg, #f1f1f1 60%, #e0e7ff 100%);
-}
-
-main {
-  height: 100%;
-  width: 100%;
-  padding: 1.5rem;
-  display: flex;
-  gap: 1rem;
+  height: 100vh;
+  width: 100vw;
+  overflow-x: hidden;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
 
 .main {
-  max-width: 500px;
-  margin: 2rem auto;
-  background: #fff;
-  border-radius: 1.5rem;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  min-height: 100vh;
+  width: 100%;
   padding: 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: flex-start;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
 
 h1 {
-  color: #3b4cca;
-  margin-bottom: 1.5rem;
-  letter-spacing: 2px;
-  font-size: 2.5rem;
+  color: #fff;
+  margin-bottom: 2rem;
+  letter-spacing: 3px;
+  font-size: clamp(2rem, 5vw, 4rem);
   font-weight: 700;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+
+.Search {
+  width: 100%;
+  max-width: 600px;
+  margin-bottom: 2rem;
+}
+
+.Search form {
+  display: flex;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.Search input {
+  flex: 1;
+  padding: 1rem 1.5rem;
+  border: none;
+  border-radius: 50px;
+  font-size: 1rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.Search input:focus {
+  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+.Search button {
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 50px;
+  background: #fff;
+  color: #667eea;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.Search button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.Search button:active {
+  transform: translateY(0);
+}
+
+.show {
+  width: 100%;
+  max-width: 600px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 2rem;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.showImage {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  border-radius: 1.5rem;
+  padding: 2rem;
+  box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.pokemonImage {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  image-rendering: pixelated;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+  transition: transform 0.3s ease;
+}
+
+.pokemonImage:hover {
+  transform: scale(1.05);
+}
+
+.showName {
+  width: 100%;
+  text-align: center;
+}
+
+.showName p {
+  margin-bottom: 0.5rem;
+  font-size: clamp(1rem, 2vw, 1.3rem);
+  color: #333;
+}
+
+.showName p:first-child {
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  color: #667eea;
+  font-weight: 700;
+  margin-bottom: 1rem;
 }
 
 .details {
   width: 100%;
-  margin-top: 1.5rem;
-  background: #f6f8fc;
-  border-radius: 1rem;
-  padding: 1rem 1.5rem;
-  box-shadow: 0 2px 8px rgba(59,76,202,0.07);
+  max-width: 600px;
+  margin-top: 0;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 2rem;
+  padding: 2rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
 }
 
 .abilities {
-  margin-bottom: 1rem;
-  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+  font-size: clamp(1rem, 2vw, 1.2rem);
   color: #555;
+  line-height: 1.6;
+}
+
+.stats {
+  width: 100%;
 }
 
 .stats p {
-  margin-bottom: 0.7rem;
-  font-size: 1rem;
+  margin-bottom: 1rem;
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
   color: #222;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
 }
 
 progress {
-  vertical-align: middle;
-  margin: 0 0.5rem;
-  height: 12px;
-  border-radius: 6px;
+  flex: 1;
+  min-width: 150px;
+  height: 20px;
+  border-radius: 10px;
   background: #e0e7ff;
-  accent-color: #3b4cca;
+  accent-color: #667eea;
+  border: none;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .stats p:last-child {
   margin-bottom: 0;
 }
 
-@media (max-width: 600px) {
+.start-screen {
+  width: 100%;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2rem;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 2rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+  margin-top: 2rem;
+}
+
+.start-screen img {
+  width: clamp(100px, 20vw, 200px);
+  margin-bottom: 2rem;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+.start-screen p {
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
+  color: #667eea;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* Tablet and Desktop */
+@media (min-width: 768px) {
   .main {
-    max-width: 95vw;
+    padding: 3rem;
+  }
+
+  .show {
+    padding: 3rem;
+  }
+
+  .details {
+    padding: 2.5rem;
+  }
+
+  .showImage {
+    padding: 3rem;
+  }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  .main {
     padding: 1rem;
   }
-  .details {
-    padding: 0.7rem 1rem;
-  }
+
   h1 {
-    font-size: 2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .Search {
+    margin-bottom: 1.5rem;
+  }
+
+  .Search form {
+    flex-direction: column;
+  }
+
+  .Search input,
+  .Search button {
+    width: 100%;
+    padding: 0.875rem 1.25rem;
+  }
+
+  .show {
+    padding: 1.5rem;
+    border-radius: 1.5rem;
+  }
+
+  .showImage {
+    padding: 1.5rem;
+  }
+
+  .details {
+    padding: 1.5rem;
+    border-radius: 1.5rem;
+  }
+
+  .stats p {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  progress {
+    width: 100%;
+    min-width: 100%;
+  }
+
+  .start-screen {
+    padding: 3rem 1.5rem;
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+  .main {
+    padding: 0.75rem;
+  }
+
+  .show,
+  .details {
+    padding: 1rem;
+  }
+
+  .showImage {
+    padding: 1rem;
   }
 }

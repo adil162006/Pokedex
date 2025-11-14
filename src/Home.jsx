@@ -1,8 +1,8 @@
-import React from 'react'
-import Search from './Search'
-import Image from './Image'
-import Stats from './Stats'
-import { useState } from 'react'
+import React, { useState } from 'react';
+import Search from './Search';
+import Image from './Image';
+import Stats from './Stats';
+import pokeball from './assets/pokeball.png';
 
 export const Home = () => {
   const [pokemonData, setPokemonData] = useState(null);
@@ -16,41 +16,46 @@ export const Home = () => {
   async function fetchData(query) {
     try {
       let response = await fetch(`https://pokeapi.co/api/v2/pokemon/${query.toLowerCase()}`);
-      if (!response.ok) {
-        throw new Error("Pokemon not found");
-      }
+      if (!response.ok) throw new Error("Pokemon not found");
+
       let data = await response.json();
       setPokemonData(data);
-      console.log("Pokemon data:", data);
       setPokemonImage(data.sprites.front_default);
       setPokemonName(data.name.charAt(0).toUpperCase() + data.name.slice(1));
       setPokemonId(data.id);  
       setPokemonType(data.types.map(type => type.type.name.charAt(0).toUpperCase() + type.type.name.slice(1)).join(", "));
-      setPokemonStats(data.stats)
+      setPokemonStats(data.stats);
       setPokemonAbilities(data.abilities.map(ability => ability.ability.name.charAt(0).toUpperCase() + ability.ability.name.slice(1)).join(", "));
-      
-    }
-    catch (error) {
+    } catch (error) {
       console.error("Error fetching data:", error);
     }
-    
   }
 
-
-
   return (
-
     <div className="main">
       <h1>PokeDex</h1>
-      <Search onSearch={fetchData}/>
-      <Image 
-        imageUrl={pokemonImage} 
-        name={pokemonName} 
-        id={pokemonId} 
-        types={pokemonType} 
-     />
-      <Stats stats={pokemonStats} abilities={pokemonAbilities}/>
-      
+      <Search onSearch={fetchData} />
+
+      {/* Conditional Rendering */}
+      {pokemonData ? (
+        <>
+          <Image 
+            imageUrl={pokemonImage} 
+            name={pokemonName} 
+            id={pokemonId} 
+            types={pokemonType} 
+          />
+          <Stats 
+            stats={pokemonStats} 
+            abilities={pokemonAbilities} 
+          />
+        </>
+      ) : (
+        <div className="start-screen">
+           <img src={pokeball} alt="Pokéball" />
+          <p>Search for a Pokémon to see its stats!</p>
+        </div>
+      )}
     </div>
-  )
-}
+  );
+};
