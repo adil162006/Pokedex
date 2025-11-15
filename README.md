@@ -1,6 +1,10 @@
-# Pokémon API Pokédex
+add thi# Pokémon API Pokédex
 
 A simple React Pokédex app that lets you search for Pokémon and view their stats, abilities, and images using the [PokéAPI](https://pokeapi.co/).
+
+## Live Demo
+
+Check out the live version: [https://pokewdexxx.netlify.app/](https://pokewdexxx.netlify.app/)
 
 ## Features
 
